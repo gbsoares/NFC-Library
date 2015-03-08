@@ -13,7 +13,7 @@ The Raspberry Pi is running a Raspian Wheezy distribution onto which I have inst
 ## Installation
 
 ### libnfc
-The first step in connecting the Raspberry Pi to the PN532 board is to install the [libnfc library](http://nfc-tools.org/index.php?title=Main_Page). I have copied the instructions from [Adafruit](https://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/building-libnfc) in case they change their page in the future.
+The first step in connecting the Raspberry Pi to the PN532 board is to install the [libnfc library](http://nfc-tools.org/index.php?title=Main_Page). I have copied the instructions from [Adafruit](https://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/overview) in case they change their page in the future. Their explanation is more detailed so I would recommend following their installation process.
 * Go to [this link](https://code.google.com/p/libnfc/source/browse/?name=libnfc-1.7.0) and download the libnfc tar file. You then want to run the following command to extract the files:
 ```
 $ cd /home/pi
@@ -46,6 +46,9 @@ $ ./configure --with-drivers=pn532_uart --sysconfdir=/etc --prefix=/usr
 $ sudo make clean
 $ sudo make install all
 ```
+
+### MySQL
+
 
 
 
