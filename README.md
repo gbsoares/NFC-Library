@@ -48,7 +48,22 @@ $ sudo make install all
 ```
 
 ### MySQL
-
-
-
-
+The next step is to install MySQL on the Raspberry Pi along with the Python bindings so that we can modify our database from the Python scripts. I mostly followed the steps outlined [here](http://raspberrywebserver.com/sql-databases/using-mysql-on-a-raspberry-pi.html) to do so.
+* To install MySQL and the Python bindings run:
+```
+sudo apt-get install mysql-server python-mysqldb
+```
+* You then want to create a database that will hold the library items. I created a database containing a single table following the format below:
+```
++-------------+----------+------+------------+----------------+
+| Field       | Type     | Null | Default    | Extra          |
++-------------+----------+------+------------+----------------+
+| row         | int      | NO   | NULL       | auto_increment |
+| nfc_id      | bigint   | NO   |            |                |
+| book_title  | text     | NO   |            |                |
+| book_author | text     | NO   |            |                |
+| status      | tinyint  | YES  | 0          |                |
+| date        | date     | YES  | 0000-00-00 |                |
+| employee    | text     | NO   |            |                |
++-------------+----------+------+------------+----------------+
+```
