@@ -64,6 +64,6 @@ sudo apt-get install mysql-server python-mysqldb
 | book_author | text     | NO   |            |                |
 | status      | tinyint  | YES  | 0          |                |
 | date        | date     | YES  | 0000-00-00 |                |
-| employee    | text     | NO   |            |                |
+| employee    | text     | YES  | NULL       |                |
 +-------------+----------+------+------------+----------------+
 ```
