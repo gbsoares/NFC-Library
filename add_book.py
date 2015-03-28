@@ -99,7 +99,7 @@ RFID = int(hexId[0] << 24 | hexId[1] << 16 | hexId[2] << 8 | hexId[3])
 
 #check if RFID already exists in the database
 try:
-    db = MySQLdb.connect('localhost', '<username>', '<password>', '<database_name>')
+    db = MySQLdb.connect('localhost', 'DE_team', 'ADC2000', 'DE_library')
     cursor = db.cursor()
 except:
     print "Unable to connect to database... exiting"
@@ -123,18 +123,19 @@ print "NFC Id: " + "0x{:08X}".format(RFID)
 '''
 Table Structure:
 ************************
-column #	|	Field Name	|	Type
------------------------------------------
-	0		|	row			|	AUTO_INCREMENT
-	1		|	nfc_id		|	INT
-	2		|	book_title	|	TEXT
-	3		|	book_author	|	TEXT
-	4		|	status		|	BOOLEAN
-	5		|	date		|	DATE
-	6		|	employee	|	TEXT
+column #	|	Field Nam	|	Type
+---------------------------------------------------------------
+	0	|	row		|	AUTO_INCREMENT
+	1	|	nfc_id		|	INT
+	2	|	book_title	|	TEXT
+	3	|	book_author	|	TEXT
+	4	|	status		|	BOOLEAN
+	5	|	date		|	DATE
+	6	|	user		|	TEXT
+	7	|	num_check_out	|	INT
 '''
 try:
-    cursor.execute("INSERT INTO booklist VALUES(null, %s, %s, %s, '0', %s, null);",
+    cursor.execute("INSERT INTO booklist VALUES(null, %s, %s, %s, '0', %s, null, null);",
                    (str(RFID), title, author, time.strftime('%Y-%m-%d')))
 except:
     print "Unable to add to database... exiting"
@@ -145,7 +146,7 @@ except:
 #get the entire booklist and display it
 cursor.execute("SELECT * from booklist;")
 rows = cursor.fetchall()
-table = PrettyTable(["row", "NFC Id", "Book Title", "Book Author", "Status", "Date", "Employee"])
+table = PrettyTable(["row", "NFC Id", "Book Title", "Book Author", "Status", "Date", "User", "Num Check Out"])
 table.align["Book Title"] = "l"     #left align
 table.align["Book Author"] = "l"    #left align
 for i in rows:
@@ -162,5 +163,3 @@ db.commit()
 cursor.close()
 db.close()
 sys.exit()
-
-
