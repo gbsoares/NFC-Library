@@ -53,17 +53,43 @@ The next step is to install MySQL on the Raspberry Pi along with the Python bind
 ```
 sudo apt-get install mysql-server python-mysqldb
 ```
-* You then want to create a database that will hold the library items. I created a database containing a single table following the format below:
+* You then want to create a database that will hold the library items. I created a database containing three tables following the format below:
 ```
-+-------------+----------+------+------------+----------------+
-| Field       | Type     | Null | Default    | Extra          |
-+-------------+----------+------+------------+----------------+
-| row         | int      | NO   | NULL       | auto_increment |
-| nfc_id      | bigint   | NO   |            |                |
-| book_title  | text     | NO   |            |                |
-| book_author | text     | NO   |            |                |
-| status      | tinyint  | YES  | 0          |                |
-| date        | date     | YES  | 0000-00-00 |                |
-| employee    | text     | YES  | NULL       |                |
-+-------------+----------+------+------------+----------------+
-```
+BOOKLIST TABLE:
++---------------+------------+------+-----+---------+----------------+
+| Field         | Type       | Null | Key | Default | Extra          |
++---------------+------------+------+-----+---------+----------------+
+| row           | int(11)    | NO   | PRI | NULL    | auto_increment |
+| nfc_id        | bigint(20) | YES  |     | NULL    |                |
+| book_title    | text       | YES  |     | NULL    |                |
+| book_author   | text       | YES  |     | NULL    |                |
+| status        | tinyint(1) | YES  |     | NULL    |                |
+| date          | date       | YES  |     | NULL    |                |
+| user          | int(11)    | YES  |     | NULL    |                |
+| num_check_out | int(11)    | YES  |     | 0       |                |
++---------------+------------+------+-----+---------+----------------+
+
+USERS TABLE: 
++-----------------------+------------+------+-----+---------+----------------+
+| Field                 | Type       | Null | Key | Default | Extra          |
++-----------------------+------------+------+-----+---------+----------------+
+| row                   | int(11)    | NO   | PRI | NULL    | auto_increment |
+| first_name            | text       | YES  |     | NULL    |                |
+| last_name             | text       | YES  |     | NULL    |                |
+| nfc_id                | bigint(20) | YES  |     | NULL    |                |
+| num_books_checked_out | int(11)    | YES  |     | NULL    |                |
++-----------------------+------------+------+-----+---------+----------------+
+
+STATISTICS:
++-----------+------------+------+-----+---------+----------------+
+| Field     | Type       | Null | Key | Default | Extra          |
++-----------+------------+------+-----+---------+----------------+
+| row       | int(11)    | NO   | PRI | NULL    | auto_increment |
+| last_in   | bigint(20) | YES  |     | NULL    |                |
+| last_out  | bigint(20) | YES  |     | NULL    |                |
+| num_in    | int(11)    | YES  |     | NULL    |                |
+| num_out   | int(11)    | YES  |     | NULL    |                |
+| most_read | bigint(20) | YES  |     | NULL    |                |
+| timestamp | datetime   | YES  |     | NULL    |                |
++-----------+------------+------+-----+---------+----------------+
+'''
