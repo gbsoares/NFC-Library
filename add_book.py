@@ -99,7 +99,7 @@ RFID = int(hexId[0] << 24 | hexId[1] << 16 | hexId[2] << 8 | hexId[3])
 
 #check if RFID already exists in the database
 try:
-    db = MySQLdb.connect('localhost', 'DE_team', 'ADC2000', 'DE_library')
+    db = MySQLdb.connect('localhost', '<username>', '<password>', '<database>')
     cursor = db.cursor()
 except:
     print "Unable to connect to database... exiting"
