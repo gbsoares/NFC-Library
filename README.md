@@ -35,6 +35,7 @@ RPi Pin # | RPi Pin Name | Connected To:
 
 ### libnfc
 The first step in connecting the Raspberry Pi to the PN532 board is to install the [libnfc library](http://nfc-tools.org/index.php?title=Main_Page). I have copied the instructions from [Adafruit](https://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/overview) in case they change their page in the future. Their explanation is more detailed so I would recommend following their installation process.
+* Free up UART on the RPi by going into `<$ sudo raspi-config>`, selecting **option 7** (Serial), and checking option to **No**. Reboot RPi.
 * Go to [this link](https://code.google.com/p/libnfc/source/browse/?name=libnfc-1.7.0) and download the libnfc tar file. You then want to run the following command to extract the files:
 ```
 $ cd /home/pi
@@ -67,6 +68,7 @@ $ ./configure --with-drivers=pn532_uart --sysconfdir=/etc --prefix=/usr
 $ sudo make clean
 $ sudo make install all
 ```
+You can test that the installation was done successfully by running `$ nfc-list`. You should see some text that says: "Connected to NFC Reader: ...".
 
 ### MySQL
 The next step is to install MySQL on the Raspberry Pi along with the Python bindings so that we can modify our database from the Python scripts. I mostly followed the steps outlined [here](http://raspberrywebserver.com/sql-databases/using-mysql-on-a-raspberry-pi.html) to do so.
@@ -115,4 +117,18 @@ STATISTICS:
 ```
 
 ### Python Scripts
+I have added two Python scripts to this project **add_book.py** and **library.py**.
+Run **add_book.py** whenever you want to add a book to the database. This script will prompt you to enter the title of the book, the author(s), and to scan the NFC tag. In between each step it prompts you to make sure the correct information was enterred. There are certain variables you will want to edit in your copy depending on how you set up your database.
+In the block:
+```
+    db = MySQLdb.connect('localhost', '<username>', '<password>', '<database>')
+    cursor = db.cursor()
+```
+you will want to replace `username` and `password` with the credentials you used to set up MySQL , and `database` with the name of the database you created.
 
+**library.py** is a script that I leave running all the time. I set a cron job that starts the script after bootup and another script that reboots the RPi every night (just in case the system gets into an undesired state and there is a way to recover from it). This script performs a couple of tasks:
+* it polls the state of both the check-out and check-in buttons
+* it scans for NFC tags if the buttons are pressed
+* it toggles the LEDs to provide visual feedback
+* updates the databases
+* sends statistics to data.sparkfun.com which I can then use to display basic information about the system on my website
