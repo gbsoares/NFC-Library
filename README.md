@@ -35,7 +35,7 @@ RPi Pin # | RPi Pin Name | Connected To:
 
 ### libnfc
 The first step in connecting the Raspberry Pi to the PN532 board is to install the [libnfc library](http://nfc-tools.org/index.php?title=Main_Page). I have copied the instructions from [Adafruit](https://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/overview) in case they change their page in the future. Their explanation is more detailed so I would recommend following their installation process.
-* Free up UART on the RPi by going into `<$ sudo raspi-config>`, selecting **option 7** (Serial), and checking option to **No**. Reboot RPi.
+* Free up UART on the RPi by going into `$ sudo raspi-config`, selecting **option 7** (Serial), and checking option to **No**. Reboot RPi.
 * Go to [this link](https://code.google.com/p/libnfc/source/browse/?name=libnfc-1.7.0) and download the libnfc tar file. You then want to run the following command to extract the files:
 ```
 $ cd /home/pi
@@ -118,7 +118,7 @@ STATISTICS:
 
 ### Python Scripts
 I have added two Python scripts to this project **add_book.py** and **library.py**.
-Run **add_book.py** whenever you want to add a book to the database. This script will prompt you to enter the title of the book, the author(s), and to scan the NFC tag. In between each step it prompts you to make sure the correct information was enterred. There are certain variables you will want to edit in your copy depending on how you set up your database.
+Run **add_book.py** whenever you want to add a book to the database. This script will prompt you to enter the title of the book, the author(s), and scan the NFC tag. In between each step it prompts you to make sure the correct information was enterred. There are certain variables you will want to edit in your copy depending on how you set up your database.
 In the block:
 ```
     db = MySQLdb.connect('localhost', '<username>', '<password>', '<database>')
@@ -132,3 +132,5 @@ you will want to replace `username` and `password` with the credentials you used
 * it toggles the LEDs to provide visual feedback
 * updates the databases
 * sends statistics to data.sparkfun.com which I can then use to display basic information about the system on my website
+
+Both files are small and straight-forward and you should be able to easily make changes to them for your application.
