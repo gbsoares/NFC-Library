@@ -2,8 +2,9 @@
 This is the project description for an NFC book management system that I built for my office.
 It uses a Raspberry Pi connected to an NFC reader (PN532) to read Mifare NFC tags on the books that we have in our Engineering Library.
 
-The motivation for this project came about when I purchased a large number of books for the Device Engineering team at Alarm.com and wanted to have a way to be able to track where the books were going. I decided that an easy way to do so would be to use and NFC tag reader which would allow me to scan the books each time they were either checked in or checked out from the library.
+The motivation for this project came about when I purchased a large number of books for the Device Engineering team at Alarm.com and wanted to have a way to be able to track the state of the books. I decided that an easy way to do so would be to use and NFC tag reader which would allow me to scan the books each time they were either checked in or checked out from the library.
 
+A high-level description of the project can on my [website](http://gabrielsoares.com/projects/electronics/nfc_library.html).
 
 ## Hardware & Software Components
 I wanted the whole system to be self-contained and small enough to be able to mount to the bookshelves so I decided to use a Raspberry Pi and an Adafruit PN532 NFC/RFID controller board. Since I am still in the process of building the whole system I haven't created an enclosure for it.
