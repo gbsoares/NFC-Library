@@ -7,8 +7,26 @@ The motivation for this project came about when I purchased a large number of bo
 A high-level description of the project can on my [website](http://gabrielsoares.com/projects/electronics/nfc_library.html).
 
 ## Hardware & Software Components
-I wanted the whole system to be self-contained and small enough to be able to mount to the bookshelves so I decided to use a Raspberry Pi and an Adafruit PN532 NFC/RFID controller board. Since I am still in the process of building the whole system I haven't created an enclosure for it.
+I wanted the whole system to be self-contained and small enough to be able to mount to the bookshelves so I decided to use a Raspberry Pi and an Adafruit PN532 NFC/RFID controller board. 
+
 The Raspberry Pi is running a Raspian Wheezy distribution onto which I have installed MySQL and the Python binding library.
+
+I have also built an enclosure for the system out of wood and acrylic using a laser cutter (drawings included in .dwg file).
+
+The physical connections between the Raspberry Pi, NFC reader, buttons, and LEDs are summarized in the following table:
+
+RPi Pin # | RPi Pin Name | Connected To:
+--------- | ------------ | -------------
+2 | 5V | 5.0V on NFC
+6 | GND | GND on NFC
+8 | TX | TXD on NFC
+10 | RX | RXD on NFC
+12 | BCM GPIO18 | Check-Out Button
+16 | BCM GPIO23 | Check-In Button
+7 | BCM GPIO04 | Red LED
+22 | BCM GPIO25 | Yellow LED
+15 | BCM GPIO22 | Green LED
+25 | GND | LEDs (cathode)
 
 
 ## Installation
@@ -80,7 +98,6 @@ USERS TABLE:
 | nfc_id                | bigint(20) | YES  |     | NULL    |                |
 | num_books_checked_out | int(11)    | YES  |     | NULL    |                |
 +-----------------------+------------+------+-----+---------+----------------+
-
 STATISTICS:
 +-----------+------------+------+-----+---------+----------------+
 | Field     | Type       | Null | Key | Default | Extra          |
@@ -93,4 +110,6 @@ STATISTICS:
 | most_read | bigint(20) | YES  |     | NULL    |                |
 | timestamp | datetime   | YES  |     | NULL    |                |
 +-----------+------------+------+-----+---------+----------------+
-'''
+```
+
+
