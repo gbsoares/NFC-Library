@@ -102,6 +102,7 @@ USERS TABLE:
 | nfc_id                | bigint(20) | YES  |     | NULL    |                |
 | num_books_checked_out | int(11)    | YES  |     | NULL    |                |
 +-----------------------+------------+------+-----+---------+----------------+
+
 STATISTICS:
 +-----------+------------+------+-----+---------+----------------+
 | Field     | Type       | Null | Key | Default | Extra          |
@@ -121,8 +122,8 @@ I have added two Python scripts to this project **add_book.py** and **library.py
 Run **add_book.py** whenever you want to add a book to the database. This script will prompt you to enter the title of the book, the author(s), and scan the NFC tag. In between each step it prompts you to make sure the correct information was enterred. There are certain variables you will want to edit in your copy depending on how you set up your database.
 In the block:
 ```
-    db = MySQLdb.connect('localhost', '<username>', '<password>', '<database>')
-    cursor = db.cursor()
+db = MySQLdb.connect('localhost', '<username>', '<password>', '<database>')
+cursor = db.cursor()
 ```
 you will want to replace `username` and `password` with the credentials you used to set up MySQL , and `database` with the name of the database you created.
 
