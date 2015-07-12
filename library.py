@@ -284,6 +284,8 @@ try:
     
     #enter infinite loop
     while True:
+        #add a delay so that we don't hog down all CPU cycles (other background processes can use resources)
+        time.sleep(0.1)
         
         #check if 30sec have passed since last button press and turn off LEDs
         if start_time != 0 and ((time.time() - start_time) > 30):
