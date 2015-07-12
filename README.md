@@ -29,6 +29,7 @@ RPi Pin # | RPi Pin Name | Connected To:
 25 | GND | LEDs (cathode)
 
 [RPi 1 GPIO Descriptions](https://github.com/gbsoares/NFC-Library/blob/master/gpio-descriptions-rpi1.png)
+
 [RPi 2 GPIO Descriptions](https://github.com/gbsoares/NFC-Library/blob/master/gpio-descriptions-rpi2.png)
 
 ## Installation
