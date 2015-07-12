@@ -141,3 +141,19 @@ $ sudo nano /etc/inittab
 $ sudo reboot
 ```
 
+####Setting up con job
+Create a directory in your $HOME directory where you can keep any logs from the cron job:
+```
+$ cd ~
+$ mkdir logs
+```
+* edit crontab so that the python script library.py begins running after bootup
+```
+$ sudo crontab -e
+```
+* this will open a crontab window in which you need to add the following at the bottom:
+```
+@reboot sudo python /home/pi/Desktop/library.py >/home/pi/logs/cronlog 2>&1
+```
+Save this file and reboot your system. When the system comes back online, make sure that the python script is running correctly by either running `$ ps -ef | grep libary` and seeing if the library script is running in the background, or by running `$ top` and looking for the python process.
+You can also open file 'cronlog' in "/home/pi/logs/" and check that no critical error messages were issued (messages about GPIO not being properly cleaned up are normal and expected).
