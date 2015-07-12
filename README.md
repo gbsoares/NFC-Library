@@ -128,3 +128,16 @@ you will want to replace `username` and `password` with the credentials you used
 * sends statistics to data.sparkfun.com which I can then use to display basic information about the system on my website
 
 Both files are small and straight-forward and you should be able to easily make changes to them for your application.
+
+####Setting up Auto-Login
+I made the following edits to guarantee that the correct user automatically logged in to the system after a reboot.
+```
+$ sudo nano /etc/inittab
+```
+* scroll to the line that looks like: `1:2345:respawn:/sbin/getty 38400 tty1` and comment it out by putting a "#" in front.
+* now add the following line beneath it: `1:2345:respawn:/bin/login -f pi tty1 </dev/tty1 >/dev/tty1 2>&1`
+* reboot the system
+```
+$ sudo reboot
+```
+
