@@ -141,7 +141,7 @@ $ sudo nano /etc/inittab
 $ sudo reboot
 ```
 
-####Setting up con job
+####Setting up cron job
 Create a directory in your $HOME directory where you can keep any logs from the cron job:
 ```
 $ cd ~
