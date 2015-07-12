@@ -36,14 +36,7 @@ RPi Pin # | RPi Pin Name | Connected To:
 ### libnfc
 The first step in connecting the Raspberry Pi to the PN532 board is to install the [libnfc library](http://nfc-tools.org/index.php?title=Main_Page). I have copied the instructions from [Adafruit](https://learn.adafruit.com/adafruit-nfc-rfid-on-raspberry-pi/overview) in case they change their page in the future. Their explanation is more detailed so I would recommend following their installation process.
 * Free up UART on the RPi by going into `$ sudo raspi-config`, selecting **option 7** (Serial), and checking option to **No**. Reboot RPi.
-* Go to [this link](https://code.google.com/p/libnfc/source/browse/?name=libnfc-1.7.0) and download the libnfc tar file. You then want to run the following command to extract the files:
-```
-$ cd /home/pi
-$ mkdir libnfc
-$ cd libnfc
-$ wget https://libnfc.googlecode.com/archive/libnfc-1.7.0.tar.gz
-$ tar -xvzf libnfc-1.7.0.tar.gz
-```
+* Go to [this link](https://bintray.com/nfc-tools/sources/libnfc) and download the latest stable release of libnfc tar file. You then want to extract uncompress and extract the contents of the .tar file (in the commands listed below, replace `libnfc-libnfc-1.7.0` with the appropriate file name from your download.
 * Once you have extracted the files you need to setup libnfc for the Raspberry Pi by moving the uart config file for RPi into the correct folder `/etc/nfc/device.d/`.
 ```
 $ cd libnfc-libnfc-1.7.0
