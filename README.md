@@ -158,3 +158,9 @@ $ sudo crontab -e
 ```
 Save this file and reboot your system. When the system comes back online, make sure that the python script is running correctly by either running `$ ps -ef | grep libary` and seeing if the library script is running in the background, or by running `$ top` and looking for the python process.
 You can also open file 'cronlog' in "/home/pi/logs/" and check that no critical error messages were issued (messages about GPIO not being properly cleaned up are normal and expected).
+
+####Installing PrettyTable for add_book.py
+In the Python script add_book.py I use the PrettyTable module to display all of the elements of the booklist database table before the user confirms the adding of the book. You will get an error when trying to run add_book.py if you don't have it installed. To install using `pip`, run:
+```
+$ sudo pip install prettytable
+```
